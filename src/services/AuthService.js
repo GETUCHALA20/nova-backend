@@ -44,7 +44,7 @@ export default {
         const { email, password } = loginInfo;
         try {
             const user = await User.findOne({ where: { email: email } });
-            if (!user) return {code:404, msg:'Incorrect login credentials. Kindly check and try again'};
+            if (!user) return {code:400, msg:'Incorrect login credentials. Kindly check and try again'};
             const checkPassword = hash_compare(hash(password), user.password);
             if (!checkPassword) {
                 return {code: 400, msg: 'Incorrect login credentials. Kindly check and try again'};
